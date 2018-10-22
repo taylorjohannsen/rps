@@ -32,10 +32,37 @@
             console.log('Invalid option, try again.');
         }
     }
+
+    function game() {
+
+            let playerscore = 0;
+            let computerscore = 0;
+            let message;
+
+        for (let x = 1; x <= 5; x++) {
+            const playerSelection = prompt(`Round ${x}: Rock, paper, or scissors?`).toLowerCase();
+            const computerSelection = computerPlay(); 
+            let result = playRound(playerSelection, computerSelection);
+
+            if (result.includes('won')) {
+                playerscore++;
+            }
+            else if (result.includes('lost')) {
+                computerscore++;
+            }
+            
+            console.log(result);
+        }
+
+        message = (playerscore > computerscore) ? 'You win!' :
+                    (playerscore < computerscore) ? 'You lose!' :
+                      'Draw!';
+
+        return(`Your score: ${playerscore}, Computer Score: ${computerscore}. ${message}`)
+    }
     
-    const playerSelection = prompt('Rock, paper, or scissors?').toLowerCase();
-    const computerSelection = computerPlay();
-    console.log(playRound(playerSelection, computerSelection));
+    
+    console.log(game());
 
 
 
