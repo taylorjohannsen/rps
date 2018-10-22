@@ -6,22 +6,12 @@
 <body>
   <script>
 
-    function computerPlay(user) {
-        let choice = [1, 2, 3];
-        let finalchoice = choice[Math.floor(Math.random() * choice.length)];
-
-        if (finalchoice = 1) {
-            return("rock");
-        }
-        else if (finalchoice = 2) {
-            return("paper");
-        }
-        else {
-            return("scissors");
-        }
-   
+        function computerPlay(user) {
+        let choice = ['rock', 'paper', 'scissors'];
+        return choice[Math.floor(Math.random() * choice.length)];
+        
     }
-
+    
     function playRound(playerSelection, computerSelection) {
         if ((playerSelection == 'rock' && computerSelection == 'scissors') ||
             (playerSelection == 'paper' && computerSelection == 'rock') ||
@@ -42,8 +32,8 @@
             console.log('Invalid option, try again.');
         }
     }
-
-    const playerSelection = 'rock';
+    
+    const playerSelection = prompt('Rock, paper, or scissors?').toLowerCase();
     const computerSelection = computerPlay();
     console.log(playRound(playerSelection, computerSelection));
 
