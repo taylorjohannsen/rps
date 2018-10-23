@@ -1,16 +1,44 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <link rel="stylesheet" type="text/css" href="./style.css" media="screen" />
   <title>Page Title</title>
 </head>
 <body>
+    <h2>Rock, Paper, or Scissors?</h2>
+
+    <button id="btn1" type="button">Rock</button>
+    <button id="btn2" type="button">Paper</button> 
+    <button id="btn3" type="button">Scissors</button>
+
+    <br>
+    <br>
+
+    <div id="container"></div>
+
+    <br>
+    <br>
+
+    <div id="third"></div>
+
+    <br>
+    <br>
+
+    <div id="card"></div>
+
+
   <script>
 
-        function computerPlay(user) {
+    const div = document.querySelector('#container');
+    const card = document.querySelector('#card');
+    const third = document.querySelector('#third');
+
+    function computerPlay(user) {
         let choice = ['rock', 'paper', 'scissors'];
         return choice[Math.floor(Math.random() * choice.length)];
         
     }
+    
     
     function playRound(playerSelection, computerSelection) {
         if ((playerSelection == 'rock' && computerSelection == 'scissors') ||
@@ -29,40 +57,90 @@
             return('Draw!');
         }
         else {
-            console.log('Invalid option, try again.');
+            div.textContent = 'Invalid Option.';
         }
-    }
-
-    function game() {
-
-            let playerscore = 0;
-            let computerscore = 0;
-            let message;
-
-        for (let x = 1; x <= 5; x++) {
-            const playerSelection = prompt(`Round ${x}: Rock, paper, or scissors?`).toLowerCase();
-            const computerSelection = computerPlay(); 
-            let result = playRound(playerSelection, computerSelection);
-
-            if (result.includes('won')) {
-                playerscore++;
-            }
-            else if (result.includes('lost')) {
-                computerscore++;
-            }
-            
-            console.log(result);
-        }
-
-        message = (playerscore > computerscore) ? 'You win!' :
-                    (playerscore < computerscore) ? 'You lose!' :
-                      'Draw!';
-
-        return(`Your score: ${playerscore}, Computer Score: ${computerscore}. ${message}`)
     }
     
     
-    console.log(game());
+    var btn1 = document.querySelector('#btn1');
+    var btn2 = document.querySelector('#btn2');
+    var btn3 = document.querySelector('#btn3');
+    let playerScore = 0;
+    let computerScore = 0;
+
+
+    third.textContent = `Your Score: ${playerScore}. Computer Score: ${computerScore}.`
+
+    btn1.addEventListener('click', () => {
+        let game = playRound('rock', computerPlay());
+        div.textContent = game;
+        if (game.includes('won')) {
+            playerScore++;
+        }
+        else if (game.includes('lost')) {
+            computerScore++;
+        }
+        third.textContent = `Your Score: ${playerScore}. Computer Score: ${computerScore}.`
+        if (computerScore == 5) {
+        card.textContent = `You lose the game! The computer has ${computerScore}. While you have ${playerScore}`;
+        setTimeout(function () { location.reload(1); }, 5000);
+    }
+    else if (playerScore == 5) {
+        card.textContent = `You win the game! The computer has ${computerScore}. While you have ${playerScore}`;
+        setTimeout(function () { location.reload(1); }, 5000);
+    }
+    });
+    btn2.addEventListener('click', () => {
+        let game = playRound('paper', computerPlay());
+        div.textContent = game;
+        if (game.includes("won")) {
+            playerScore++;
+        }
+        else if (game.includes("lost")) {
+            computerScore++;
+        }
+        third.textContent = `Your Score: ${playerScore}. Computer Score: ${computerScore}.`
+        if (computerScore == 5) {
+        card.textContent = `You lose the game! The computer has ${computerScore}. While you have ${playerScore}`;
+        setTimeout(function () { location.reload(1); }, 5000);
+    }
+    else if (playerScore == 5) {
+        card.textContent = `You win the game! The computer has ${computerScore}. While you have ${playerScore}`;
+        setTimeout(function () { location.reload(1); }, 5000);
+    }
+    });
+    btn3.addEventListener('click', () => {
+        let game = playRound('scissors', computerPlay());
+        div.textContent = game;
+
+        if (game.includes('won')) {
+            playerScore++;
+        }
+        else if (game.includes('lost')) {
+            computerScore++;
+        }
+        third.textContent = `Your Score: ${playerScore}. Computer Score: ${computerScore}.`
+        if (computerScore == 5) {
+        card.textContent = `You lose the game! The computer has ${computerScore}. While you have ${playerScore}`;
+        setTimeout(function () { location.reload(1); }, 5000);
+    }
+    else if (playerScore == 5) {
+        card.textContent = `You win the game! The computer has ${computerScore}. While you have ${playerScore}`;
+        setTimeout(function () { location.reload(1); }, 5000);
+    }
+    });
+
+    
+
+
+    
+
+    
+    
+    
+    
+    
+    
 
 
 
